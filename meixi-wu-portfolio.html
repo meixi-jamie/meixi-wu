@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meixi Wu — A Spring in Slow Motion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --surface: #F2EEE8;
+      --text: #3C3834;
+      --text-secondary: #7A7269;
+      --accent-sage: #9EB0A0;
+      --accent-sand: #C9B5A8;
+      --accent-lavender: #B8B4C8;
+      --divider: #E5E0D8;
+      --white: #FFFFFF;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 6vw;
+      background: rgba(250, 248, 245, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, padding 0.3s ease;
+    }
+
+    nav.scrolled {
+      border-bottom-color: var(--divider);
+      padding: 18px 6vw;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-sage);
+      transition: width 0.35s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      align-items: center;
+      gap: 0;
+      padding: 120px 6vw 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-text {
+      z-index: 2;
+      padding-right: 4vw;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 8.5rem);
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      margin-bottom: 36px;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-sand);
+    }
+
+    .hero-intro {
+      max-width: 360px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 42px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 16px 28px;
+      border: 1px solid var(--text);
+      border-radius: 50px;
+      transition: all 0.35s ease;
+    }
+
+    .hero-cta:hover,
+    .hero-cta:focus {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 70vh;
+      min-height: 460px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 28px 80px rgba(60, 56, 52, 0.12);
+    }
+
+    /* Sections */
+    section {
+      padding: 120px 6vw;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 72px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .section-line {
+      height: 1px;
+      background: var(--divider);
+      transform-origin: left;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      max-width: 680px;
+      margin-top: 18px;
+    }
+
+    /* About / Prologue */
+    .about {
+      background: var(--surface);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 1.08rem;
+      line-height: 1.95;
+      color: var(--text-secondary);
+    }
+
+    .about-text p + p {
+      margin-top: 1.6em;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .about-caption {
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 28px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--surface);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-item.span-5 { grid-column: span 5; }
+    .gallery-item.span-7 { grid-column: span 7; }
+    .gallery-item.span-4 { grid-column: span 4; }
+    .gallery-item.span-8 { grid-column: span 8; }
+    .gallery-item.span-6 { grid-column: span 6; }
+
+    .gallery-item.tall { min-height: 520px; }
+    .gallery-item.wide { min-height: 340px; }
+    .gallery-item.square { min-height: 420px; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(60, 56, 52, 0.55) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--white);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .gallery-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 8px;
+    }
+
+    /* Chapter text blocks */
+    .chapter {
+      background: var(--bg);
+    }
+
+    .chapter-text {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 80px 6vw;
+    }
+
+    .chapter-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-sand);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 22px;
+    }
+
+    .chapter-body {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    /* Filmstrip Gallery (Signature) */
+    .filmstrip {
+      background: var(--surface);
+      padding-bottom: 140px;
+    }
+
+    .filmstrip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .filmstrip-desc {
+      max-width: 420px;
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .filmstrip-controls {
+      display: flex;
+      gap: 12px;
+    }
+
+    .filmstrip-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--divider);
+      background: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .filmstrip-btn:hover {
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg);
+    }
+
+    .filmstrip-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .filmstrip-track {
+      display: flex;
+      gap: 32px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 20px 6vw 60px;
+      margin: 0 -6vw;
+      scrollbar-width: none;
+    }
+
+    .filmstrip-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filmstrip-slide {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      width: min(78vw, 900px);
+      position: relative;
+    }
+
+    .filmstrip-slide img {
+      width: 100%;
+      height: min(58vh, 560px);
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 24px 70px rgba(60, 56, 52, 0.14);
+    }
+
+    .filmstrip-info {
+      margin-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .filmstrip-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    .filmstrip-index {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 140px 6vw;
+    }
+
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .contact-text {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 42px;
+    }
+
+    .contact-email {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-style: italic;
+      color: var(--accent-sage);
+      display: inline-block;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .contact-email::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(1);
+      transform-origin: right;
+      transition: transform 0.4s ease;
+    }
+
+    .contact-email:hover {
+      color: var(--text);
+    }
+
+    .contact-email:hover::after {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    /* Footer */
+    footer {
+      padding: 48px 6vw;
+      border-top: 1px solid var(--divider);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .social-links a {
+      transition: color 0.25s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--text);
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .gallery-item img,
+      .hero-cta,
+      .nav-links a::after,
+      .contact-email::after {
+        transition: none;
+      }
+      .gallery-item:hover img {
+        transform: none;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 140px;
+        gap: 48px;
+      }
+      .hero-text {
+        padding-right: 0;
+      }
+      .hero-image img {
+        height: 54vh;
+        min-height: 360px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .gallery-item.span-5,
+      .gallery-item.span-7,
+      .gallery-item.span-4,
+      .gallery-item.span-8,
+      .gallery-item.span-6 {
+        grid-column: span 12;
+      }
+      .gallery-item.tall,
+      .gallery-item.wide,
+      .gallery-item.square {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      nav {
+        padding: 20px 5vw;
+      }
+      nav.scrolled {
+        padding: 14px 5vw;
+      }
+      .nav-links {
+        gap: 18px;
+        font-size: 0.7rem;
+      }
+      section {
+        padding: 80px 5vw;
+      }
+      .section-header {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 48px;
+      }
+      .section-line {
+        width: 100%;
+      }
+      .hero-name {
+        font-size: clamp(3rem, 14vw, 5rem);
+      }
+      .filmstrip-slide {
+        width: 86vw;
+      }
+      .chapter-text {
+        padding: 60px 5vw;
+      }
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#" class="logo">Meixi Wu</a>
+    <div class="nav-links">
+      <a href="#story">Story</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">A Visual Story / 一个视觉故事</span>
+      <h1 class="hero-name">A Spring<br><em>in Slow Motion</em></h1>
+      <p class="hero-intro">
+        Twelve frames from one slow afternoon. Pink blossoms, city sweets, grass under late sun, and a hillside turning gold.
+      </p>
+      <a href="#story" class="hero-cta">
+        Begin the story
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-image">
+      <img src="meixi_photos/meixi_03.jpeg" alt="Meixi Wu turning back among cherry blossoms" data-replace="hero">
+    </div>
+  </header>
+
+  <section id="about" class="about">
+    <div class="section-header reveal">
+      <span class="section-label">Prologue</span>
+      <div class="section-line"></div>
+      <h2 class="section-title">Some afternoons are worth stretching into forever.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          This is a small collection of moments from a single spring — the kind that begins with flowers overhead and ends with your shoes dusty from a hillside.
+        </p>
+        <p>
+          I'm Meixi. I like images that don't try too hard: soft light, real color, and the feeling that the person in the frame was somewhere they actually wanted to be.
+        </p>
+      </div>
+      <div class="about-image reveal">
+        <img src="meixi_photos/meixi_04.jpeg" alt="Meixi Wu in profile against cherry blossoms" data-replace="about">
+        <p class="about-caption">Chapter I begins under the cherry trees</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="chapter">
+    <div class="chapter-text reveal">
+      <span class="chapter-label">Chapter I</span>
+      <h2 class="chapter-title">Beneath the Cherry Trees</h2>
+      <p class="chapter-body">
+        The season arrives all at once. You look up and the street has turned pink. There is a particular kind of quiet under blossom branches — like the whole city has agreed to whisper.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item span-7 tall reveal">
+        <img src="meixi_photos/meixi_05.jpeg" alt="Meixi Wu beneath cherry blossoms, looking down softly" data-replace="story-01">
+        <div class="gallery-overlay">
+          <span class="gallery-title">Pink Canopy</span>
+          <span class="gallery-meta">01 / 03</span>
+        </div>
+      </div>
+      <div class="gallery-item span-5 tall reveal">
+        <img src="meixi_photos/meixi_01.jpeg" alt="Meixi Wu in a white top among pink cherry blossoms" data-replace="story-02">
+        <div class="gallery-overlay">
+          <span class="gallery-title">Half Hidden</span>
+          <span class="gallery-meta">02 / 03</span>
+        </div>
+      </div>
+      <div class="gallery-item span-12 wide reveal">
+        <img src="meixi_photos/meixi_06.jpeg" alt="Meixi Wu holding a cherry blossom branch close to camera" data-replace="story-03">
+        <div class="gallery-overlay">
+          <span class="gallery-title">A Small Branch, Offered</span>
+          <span class="gallery-meta">03 / 03 — an invitation to keep walking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" style="background: var(--surface);">
+    <div class="chapter-text reveal">
+      <span class="chapter-label">Chapter II</span>
+      <h2 class="chapter-title">The City Pauses for Tea</h2>
+      <p class="chapter-body">
+        Between the blossoms and the open road, we stopped somewhere warm. The light was low, the desserts were too pretty to eat, and for an hour the world outside the window could wait.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item span-5 tall reveal">
+        <img src="meixi_photos/meixi_07.jpeg" alt="Meixi Wu at afternoon tea with a tiered dessert stand" data-replace="story-04">
+        <div class="gallery-overlay">
+          <span class="gallery-title">Afternoon Tea</span>
+          <span class="gallery-meta">01 / 02</span>
+        </div>
+      </div>
+      <div class="gallery-item span-7 tall reveal">
+        <img src="meixi_photos/meixi_02.jpeg" alt="Meixi Wu offering a small cherry blossom branch" data-replace="story-05">
+        <div class="gallery-overlay">
+          <span class="gallery-title">Carrying Spring Indoors</span>
+          <span class="gallery-meta">02 / 02</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="chapter-text reveal">
+      <span class="chapter-label">Chapter III</span>
+      <h2 class="chapter-title">Sunlit Grass</h2>
+      <p class="chapter-body">
+        Then the sky opened. We found a field where the light came in low and everything turned a little unreal — green grass, blue air, and the kind of backlight that makes ordinary hair look like silk.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item span-12 wide reveal">
+        <img src="meixi_photos/meixi_08.jpeg" alt="Meixi Wu standing on a green lawn at golden hour" data-replace="story-06">
+        <div class="gallery-overlay">
+          <span class="gallery-title">The Open Field</span>
+          <span class="gallery-meta">where the afternoon stretched wide</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" style="background: var(--surface);">
+    <div class="chapter-text reveal">
+      <span class="chapter-label">Chapter IV</span>
+      <h2 class="chapter-title">The Hillside at Dusk</h2>
+      <p class="chapter-body">
+        The day ended on a slope covered in purple wildflowers. The sun was leaving, the valley below had turned soft and gold, and the whole world felt like a secret we had stumbled into.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item span-6 square reveal">
+        <img src="meixi_photos/meixi_09.jpeg" alt="Meixi Wu in a rust dress among purple wildflowers at sunset" data-replace="story-07">
+        <div class="gallery-overlay">
+          <span class="gallery-title">Walking Into Dusk</span>
+          <span class="gallery-meta">01 / 04</span>
+        </div>
+      </div>
+      <div class="gallery-item span-6 square reveal">
+        <img src="meixi_photos/meixi_10.jpeg" alt="Meixi Wu smiling among purple wildflowers" data-replace="story-08">
+        <div class="gallery-overlay">
+          <span class="gallery-title">A Quiet Smile</span>
+          <span class="gallery-meta">02 / 04</span>
+        </div>
+      </div>
+      <div class="gallery-item span-7 tall reveal">
+        <img src="meixi_photos/meixi_11.jpeg" alt="Meixi Wu in a rust dress among purple wildflowers" data-replace="story-09">
+        <div class="gallery-overlay">
+          <span class="gallery-title">Gathering the Last Light</span>
+          <span class="gallery-meta">03 / 04</span>
+        </div>
+      </div>
+      <div class="gallery-item span-5 tall reveal">
+        <img src="meixi_photos/meixi_12.jpeg" alt="Meixi Wu in a rust dress at sunset among wildflowers" data-replace="story-10">
+        <div class="gallery-overlay">
+          <span class="gallery-title">The Day Softens</span>
+          <span class="gallery-meta">04 / 04 — end of spring</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="filmstrip">
+    <div class="filmstrip-header reveal">
+      <div>
+        <span class="section-label">Filmstrip</span>
+        <h2 class="section-title" style="margin-top: 14px;">A slower look at the same afternoon.</h2>
+      </div>
+      <p class="filmstrip-desc">
+        Drag or use the arrows to move through the story frame by frame. These are the moments I keep coming back to.
+      </p>
+      <div class="filmstrip-controls">
+        <button class="filmstrip-btn" id="prevBtn" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+          </svg>
+        </button>
+        <button class="filmstrip-btn" id="nextBtn" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M19 12l-7-7M19 12l-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="filmstrip-track" id="filmstrip">
+      <div class="filmstrip-slide">
+        <img src="meixi_photos/meixi_06.jpeg" alt="Meixi Wu holding a cherry blossom branch close to camera" data-replace="film-01">
+        <div class="filmstrip-info">
+          <span class="filmstrip-title">An Invitation</span>
+          <span class="filmstrip-index">01 / 06</span>
+        </div>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="meixi_photos/meixi_07.jpeg" alt="Meixi Wu at afternoon tea with a tiered dessert stand" data-replace="film-02">
+        <div class="filmstrip-info">
+          <span class="filmstrip-title">The Pause</span>
+          <span class="filmstrip-index">02 / 06</span>
+        </div>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="meixi_photos/meixi_08.jpeg" alt="Meixi Wu standing on a green lawn at golden hour" data-replace="film-03">
+        <div class="filmstrip-info">
+          <span class="filmstrip-title">Open Field</span>
+          <span class="filmstrip-index">03 / 06</span>
+        </div>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="meixi_photos/meixi_10.jpeg" alt="Meixi Wu smiling among purple wildflowers" data-replace="film-04">
+        <div class="filmstrip-info">
+          <span class="filmstrip-title">A Quiet Smile</span>
+          <span class="filmstrip-index">04 / 06</span>
+        </div>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="meixi_photos/meixi_11.jpeg" alt="Meixi Wu in a rust dress among purple wildflowers" data-replace="film-05">
+        <div class="filmstrip-info">
+          <span class="filmstrip-title">Gathering Light</span>
+          <span class="filmstrip-index">05 / 06</span>
+        </div>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="meixi_photos/meixi_12.jpeg" alt="Meixi Wu in a rust dress at sunset among wildflowers" data-replace="film-06">
+        <div class="filmstrip-info">
+          <span class="filmstrip-title">The Day Softens</span>
+          <span class="filmstrip-index">06 / 06</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact reveal">
+    <span class="section-label">Epilogue</span>
+    <h2 class="contact-title">Let's wander through the next story together.</h2>
+    <p class="contact-text">
+      If these frames felt like a place you'd want to stay in, I'd love to hear from you. Open for portraits, small commissions, and slow afternoons with a camera.
+    </p>
+    <a href="mailto:meixi.wu95@gmail.com" class="contact-email">meixi.wu95@gmail.com</a>
+  </section>
+
+  <footer>
+    <span>© 2026 Meixi Wu</span>
+    <div class="social-links">
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="Behance">Behance</a>
+      <a href="#" aria-label="Are.na">Are.na</a>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll state
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Filmstrip controls
+    const filmstrip = document.getElementById('filmstrip');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideWidth = () => filmstrip.querySelector('.filmstrip-slide').offsetWidth + 32;
+
+    nextBtn.addEventListener('click', () => {
+      filmstrip.scrollBy({ left: slideWidth(), behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      filmstrip.scrollBy({ left: -slideWidth(), behavior: 'smooth' });
+    });
+
+    // Drag to scroll for filmstrip
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    filmstrip.addEventListener('mousedown', (e) => {
+      isDown = true;
+      filmstrip.style.cursor = 'grabbing';
+      startX = e.pageX - filmstrip.offsetLeft;
+      scrollLeft = filmstrip.scrollLeft;
+    });
+
+    filmstrip.addEventListener('mouseleave', () => {
+      isDown = false;
+      filmstrip.style.cursor = 'grab';
+    });
+
+    filmstrip.addEventListener('mouseup', () => {
+      isDown = false;
+      filmstrip.style.cursor = 'grab';
+    });
+
+    filmstrip.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - filmstrip.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      filmstrip.scrollLeft = scrollLeft - walk;
+    });
+
+    filmstrip.style.cursor = 'grab';
+  </script>
+
+</body>
+</html>
